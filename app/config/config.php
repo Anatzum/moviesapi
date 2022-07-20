@@ -19,7 +19,7 @@ return new Config([
         'migrationsDir' => 'app/migrations',
         'modelsDir' => 'app/models',
         'viewsDir' => 'app/views',
-        'migrationsTsBased' => true, // true - Use TIMESTAMP as version name, false - use versions
+        'migrationsTsBased' => false, // true - Use TIMESTAMP as version name, false - use versions
         'exportDataFromTables' => [
             // Tables names
             // Attention! It will export data every new migration

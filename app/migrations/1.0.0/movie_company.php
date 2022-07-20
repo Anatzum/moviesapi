@@ -22,6 +22,16 @@ class MovieCompanyMigration_100 extends Migration
         $this->morphTable('movie_company', [
             'columns' => [
                 new Column(
+                    'id',
+                    [
+                        'type' => Column::TYPE_INTEGER,
+                        'notNull' => true,
+                        'autoIncrement' => true,
+                        'size' => 11,
+                        'first' => true
+                    ]
+                ),
+                new Column(
                     'movie_id',
                     [
                         'type' => Column::TYPE_INTEGER,
@@ -41,6 +51,7 @@ class MovieCompanyMigration_100 extends Migration
                 ),
             ],
             'indexes' => [
+                new Index('PRIMARY', ['id'], 'PRIMARY'),
                 new Index('movie_id', ['movie_id'], ''),
                 new Index('company_id', ['company_id'], ''),
             ],
