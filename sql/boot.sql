@@ -89,9 +89,11 @@ CREATE TABLE `cast` (
 ) ENGINE=INNODB;
 
 CREATE TABLE movie_keyword (
+    id INT NOT NULL AUTO_INCREMENT,
     movie_id INT NOT NULL,
     keyword_id INT NOT NULL,
 
+    PRIMARY KEY (id),
     INDEX (movie_id),
     INDEX (keyword_id),
 
@@ -104,9 +106,11 @@ CREATE TABLE movie_keyword (
 ) ENGINE=INNODB;
 
 CREATE TABLE movie_genere (
+    id INT NOT NULL AUTO_INCREMENT,
     movie_id INT NOT NULL,
     genere_id INT NOT NULL,
 
+    PRIMARY KEY (id),
     INDEX (movie_id),
     INDEX (genere_id),
 
@@ -119,9 +123,11 @@ CREATE TABLE movie_genere (
 ) ENGINE=INNODB;
 
 CREATE TABLE movie_company (
+    id INT NOT NULL AUTO_INCREMENT,
     movie_id INT NOT NULL,
     company_id INT NOT NULL,
 
+    PRIMARY KEY (id),
     INDEX (movie_id),
     INDEX (company_id),
 
@@ -134,9 +140,11 @@ CREATE TABLE movie_company (
 ) ENGINE=INNODB;
 
 CREATE TABLE movie_language (
+    id INT NOT NULL AUTO_INCREMENT,
     movie_id INT NOT NULL,
     language_id INT NOT NULL,
 
+    PRIMARY KEY (id),
     INDEX (movie_id),
     INDEX (language_id),
 

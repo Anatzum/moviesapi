@@ -1,5 +1,8 @@
 <?php
 
+defined('BASE_PATH') || define('BASE_PATH', getenv('BASE_PATH') ?: realpath(dirname(__FILE__) . '/../..'));
+defined('APP_PATH') || define('APP_PATH', BASE_PATH . '/app');
+
 use Phalcon\Config;
 
 return new Config([
@@ -16,9 +19,10 @@ return new Config([
         'no-auto-increment' => true,
         'skip-ref-schema' => true,
         'skip-foreign-checks' => true,
-        'migrationsDir' => 'app/migrations',
-        'modelsDir' => 'app/models',
-        'viewsDir' => 'app/views',
+        'modelsDir'      => APP_PATH . '/models/',
+        'migrationsDir'  => APP_PATH . '/migrations/',
+        'viewsDir'       => APP_PATH . '/views/',
+        'baseUri'        => '/',
         'migrationsTsBased' => false, // true - Use TIMESTAMP as version name, false - use versions
         'exportDataFromTables' => [
             // Tables names
