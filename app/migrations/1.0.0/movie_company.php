@@ -37,7 +37,7 @@ class MovieCompanyMigration_100 extends Migration
                         'type' => Column::TYPE_INTEGER,
                         'notNull' => true,
                         'size' => 11,
-                        'first' => true
+                        'after' => 'id'
                     ]
                 ),
                 new Column(
