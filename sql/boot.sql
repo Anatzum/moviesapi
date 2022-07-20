@@ -35,37 +35,9 @@ CREATE TABLE ratings (
     PRIMARY KEY(id)
 ) ENGINE=INNODB;
 
-CREATE TABLE `cast` (
-    id INT NOT NULL AUTO_INCREMENT,
-    `character` varchar(255) DEFAULT "unassigned" NOT NULL,
-    name varchar(255) NOT NULL,
-    `order` INT,
-    movie_id INT NOT NULL,
-
-    PRIMARY KEY(id),
-    INDEX(movie_id),
-    FOREIGN KEY (movie_id)
-        REFERENCES movies(id)
-        ON DELETE CASCADE
-) ENGINE=INNODB;
-
-CREATE TABLE crew (
-    id INT NOT NULL AUTO_INCREMENT,
-    department varchar(255) DEFAULT "unassigned",
-    name varchar(255) NOT NULL,
-    job varchar(255) DEFAULT "unassigned",
-    movie_id INT NOT NULL,
-
-    PRIMARY KEY(id),
-    INDEX(movie_id),
-    FOREIGN KEY (movie_id)
-        REFERENCES movies(id)
-        ON DELETE CASCADE
-) ENGINE=INNODB;
-
 CREATE TABLE movies (
     id INT NOT NULL AUTO_INCREMENT,
-    rating_id INT NOT NULL,
+    rating_id INT,
     budget INT,
     homepage varchar(255) DEFAULT "",
     original_language varchar(255) DEFAULT "",
@@ -86,6 +58,34 @@ CREATE TABLE movies (
     FOREIGN KEY (rating_id)
         REFERENCES ratings(id)
         ON DELETE SET NULL
+) ENGINE=INNODB;
+
+CREATE TABLE crew (
+    id INT NOT NULL AUTO_INCREMENT,
+    department varchar(255) DEFAULT "unassigned",
+    name varchar(255) NOT NULL,
+    job varchar(255) DEFAULT "unassigned",
+    movie_id INT NOT NULL,
+
+    PRIMARY KEY(id),
+    INDEX(movie_id),
+    FOREIGN KEY (movie_id)
+        REFERENCES movies(id)
+        ON DELETE CASCADE
+) ENGINE=INNODB;
+
+CREATE TABLE `cast` (
+    id INT NOT NULL AUTO_INCREMENT,
+    `character` varchar(255) DEFAULT "unassigned" NOT NULL,
+    name varchar(255) NOT NULL,
+    `order` INT,
+    movie_id INT NOT NULL,
+
+    PRIMARY KEY(id),
+    INDEX(movie_id),
+    FOREIGN KEY (movie_id)
+        REFERENCES movies(id)
+        ON DELETE CASCADE
 ) ENGINE=INNODB;
 
 CREATE TABLE movie_keyword (
