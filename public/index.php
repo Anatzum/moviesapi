@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Mvc\Micro;
+use Phalcon\Events\Event;
+use Phalcon\Events\Manager;
 
 error_reporting(E_ALL);
 
@@ -31,11 +33,24 @@ try {
      */
     include APP_PATH . '/config/loader.php';
 
+
+    $manager = new Manager();
+
+    $manager->attach(
+        'micro:beforeExecuteRoute',
+        function (Event $event, $app) {
+            $app->response->setStatusCode(401, 'Unauthorized');
+            $app->response->sendHeaders();
+
+            return false;
+        }
+    );
     /**
      * Starting the application
      * Assign service locator to the application
      */
     $app = new Micro($di);
+    $app->setEventsManager($manager);
 
     /**
      * Include Application

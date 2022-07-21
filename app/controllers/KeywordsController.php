@@ -34,6 +34,8 @@ class KeywordsController extends \Phalcon\Mvc\Controller
 
     public function store()
     {
+        // return json_encode($this->request->getHeader('Authorization'));
+
         $keyword = new Keywords();
         $keyword->NAME = $this->request->getPost('name', 'string');
         $keyword->save();
