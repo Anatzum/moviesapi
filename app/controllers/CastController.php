@@ -7,5 +7,11 @@ class CastController extends \Phalcon\Mvc\Controller
     {
         return json_encode(Cast::find());
     }
-}
 
+    public function search($name)
+    {
+        return json_encode(
+            Cast::findByName($name)
+        );
+    }
+}
