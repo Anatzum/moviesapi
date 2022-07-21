@@ -37,22 +37,6 @@ class Keywords extends \Phalcon\Mvc\Model
     }
 
     /**
-     * Allows to query a set of records that match the specified name
-     *
-     * @param string $name
-     * @return Keywords[]|Keywords|\Phalcon\Mvc\Model\ResultSetInterface
-     */
-    public static function findByName($name): \Phalcon\Mvc\Model\ResultsetInterface
-    {
-        return parent::find([
-                'conditions' => 'NAME like ?0',
-                'bind' => [
-                    0 => '%'.$name.'%',
-                ]
-        ]);
-    }
-
-    /**
      * Allows to query the first record that match the specified conditions
      *
      * @param mixed $parameters

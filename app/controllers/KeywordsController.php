@@ -11,12 +11,24 @@ class KeywordsController extends \Phalcon\Mvc\Controller
     public function search($name)
     {
         return json_encode(
-            Keywords::findByName($name)
+            Keywords::find([
+                'conditions' => 'NAME like ?0',
+                'bind' => [
+                    0 => '%'.$name.'%',
+                ]
+            ])
         );
     }
 
     public function show($id)
     {
-
+        return json_encode(
+            Keywords::find([
+                'conditions' => 'id = ?0',
+                'bind' => [
+                    0 => $id,
+                ]
+            ])
+        );
     }
 }
