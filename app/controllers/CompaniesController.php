@@ -31,4 +31,13 @@ class CompaniesController extends \Phalcon\Mvc\Controller
             ])
         );
     }
+
+    public function store()
+    {
+        $company = new Companies();
+        $company->NAME = $this->request->getPost('name', 'string');
+        $company->save();
+
+        return json_encode($company);
+    }
 }

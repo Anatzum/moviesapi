@@ -31,4 +31,15 @@ class LanguagesController extends \Phalcon\Mvc\Controller
             ])
         );
     }
+
+    public function store()
+    {
+        $language = new Languages();
+        $language->iso = $this->request->getPost('iso', 'string');
+        $language->abbreviation = $this->request->getPost('abbreviation', 'string');
+        $language->NAME = $this->request->getPost('name', 'string');
+        $language->save();
+
+        return json_encode($language);
+    }
 }

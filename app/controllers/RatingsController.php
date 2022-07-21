@@ -31,4 +31,13 @@ class RatingsController extends \Phalcon\Mvc\Controller
             ])
         );
     }
+
+    public function store()
+    {
+        $rating = new Ratings();
+        $rating->NAME = $this->request->getPost('name', 'string');
+        $rating->save();
+
+        return json_encode($rating);
+    }
 }

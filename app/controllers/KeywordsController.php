@@ -31,4 +31,13 @@ class KeywordsController extends \Phalcon\Mvc\Controller
             ])
         );
     }
+
+    public function store()
+    {
+        $keyword = new Keywords();
+        $keyword->NAME = $this->request->getPost('name', 'string');
+        $keyword->save();
+
+        return json_encode($keyword);
+    }
 }

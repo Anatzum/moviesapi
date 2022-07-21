@@ -31,4 +31,13 @@ class GeneresController extends \Phalcon\Mvc\Controller
             ])
         );
     }
+
+    public function store()
+    {
+        $genere = new Generes();
+        $genere->NAME = $this->request->getPost('name', 'string');
+        $genere->save();
+
+        return json_encode($genere);
+    }
 }

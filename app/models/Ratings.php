@@ -47,4 +47,19 @@ class Ratings extends \Phalcon\Mvc\Model
         return parent::findFirst($parameters);
     }
 
+    public function validation()
+    {
+        $validator = new Validation();
+
+        $validator->add(
+            'NAME',
+            new Uniqueness(
+                [
+                    "message" => 'The name must be unique'
+                ]
+            )
+        );
+
+        return $this->validate($validator);
+    }
 }

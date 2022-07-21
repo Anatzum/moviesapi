@@ -1,5 +1,9 @@
 <?php
 
+use Phalcon\Validation;
+use Phalcon\Validation\Validator\Alpha as AlphaValidator;
+use Phalcon\Validation\Validator\Uniqueness;
+
 class Keywords extends \Phalcon\Mvc\Model
 {
 
@@ -49,13 +53,22 @@ class Keywords extends \Phalcon\Mvc\Model
 
     public function validation()
     {
-        $validator = new \Phalcon\Validation();
+        $validator = new Validation();
 
         $validator->add(
-            'name',
-            new \Phalcon\Validation\Validator\Alpha(
+            'NAME',
+            new AlphaValidator(
                 [
                     "message" => ":field must contain only letters"
+                ]
+            )
+        );
+
+        $validator->add(
+            'NAME',
+            new Uniqueness(
+                [
+                    "message" => 'The name must be unique'
                 ]
             )
         );

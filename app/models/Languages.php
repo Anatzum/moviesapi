@@ -1,5 +1,10 @@
 <?php
 
+use Phalcon\Validation;
+use Phalcon\Validation\Validator\Alpha as AlphaValidator;
+use Phalcon\Validation\Validator\Uniqueness;
+use Phalcon\Validation\Validator\StringLength\Max;
+
 class Languages extends \Phalcon\Mvc\Model
 {
 
@@ -59,4 +64,30 @@ class Languages extends \Phalcon\Mvc\Model
         return parent::findFirst($parameters);
     }
 
+    public function validation()
+    {
+        $validator = new Validation();
+
+        $validator->add(
+            'iso',
+            new Uniqueness(
+                [
+                    "message" => 'The iso must be unique'
+                ]
+            )
+        );
+
+        $validator->add(
+            'abbreviation',
+            new Max(
+                [
+                    "max" => 3,
+                    "message" => "Its called abbreviation for a reason",
+                    "included" => true
+                ]
+            )
+        );
+
+        return $this->validate($validator);
+    }
 }

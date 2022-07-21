@@ -1,5 +1,9 @@
 <?php
 
+use Phalcon\Validation;
+use Phalcon\Validation\Validator\Alpha as AlphaValidator;
+use Phalcon\Validation\Validator\Uniqueness;
+
 class Companies extends \Phalcon\Mvc\Model
 {
 
@@ -47,4 +51,19 @@ class Companies extends \Phalcon\Mvc\Model
         return parent::findFirst($parameters);
     }
 
+    public function validation()
+    {
+        $validator = new Validation();
+
+        $validator->add(
+            'NAME',
+            new Uniqueness(
+                [
+                    "message" => 'The name must be unique'
+                ]
+            )
+        );
+
+        return $this->validate($validator);
+    }
 }
