@@ -34,11 +34,12 @@ try {
     include APP_PATH . '/config/loader.php';
 
 
+    // TODO: move the manager setup out of here and into its own file
     $manager = new Manager();
-
     $manager->attach(
         'micro:beforeExecuteRoute',
         function (Event $event, $app) {
+            // TODO: Move away from an anonymous function
             $app->response->setStatusCode(401, 'Unauthorized');
             $app->response->sendHeaders();
 
