@@ -22,6 +22,7 @@ return new Config([
         'modelsDir'      => APP_PATH . '/models/',
         'migrationsDir'  => APP_PATH . '/migrations/',
         'viewsDir'       => APP_PATH . '/views/',
+        'controllersDir'       => APP_PATH . '/controllers/',
         'baseUri'        => '/',
         'migrationsTsBased' => false, // true - Use TIMESTAMP as version name, false - use versions
         'exportDataFromTables' => [
