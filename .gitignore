@@ -1,3 +1,6 @@
 vendor
 .env
 migrations.php
+.idea
+
+.phpunit.result.cache
