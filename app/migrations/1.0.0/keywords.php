@@ -1,7 +1,6 @@
 <?php
 
 use Phalcon\Db\Column;
-use Phalcon\Db\Exception;
 use Phalcon\Db\Index;
 use Phalcon\Db\Reference;
 use Phalcon\Migrations\Mvc\Model\Migration;
@@ -15,42 +14,42 @@ class KeywordsMigration_100 extends Migration
      * Define the table structure
      *
      * @return void
-     * @throws Exception
      */
-    public function morph(): void
+    public function morph()
     {
         $this->morphTable('keywords', [
-            'columns' => [
-                new Column(
-                    'id',
-                    [
-                        'type' => Column::TYPE_INTEGER,
-                        'notNull' => true,
-                        'autoIncrement' => true,
-                        'size' => 11,
-                        'first' => true
-                    ]
-                ),
-                new Column(
-                    'NAME',
-                    [
-                        'type' => Column::TYPE_VARCHAR,
-                        'notNull' => true,
-                        'size' => 255,
-                        'after' => 'id'
-                    ]
-                ),
-            ],
-            'indexes' => [
-                new Index('PRIMARY', ['id'], 'PRIMARY'),
-            ],
-            'options' => [
-                'TABLE_TYPE' => 'BASE TABLE',
-                'AUTO_INCREMENT' => '',
-                'ENGINE' => 'InnoDB',
-                'TABLE_COLLATION' => 'utf8mb4_general_ci',
-            ],
-        ]);
+                'columns' => [
+                    new Column(
+                        'id',
+                        [
+                            'type' => Column::TYPE_INTEGER,
+                            'notNull' => true,
+                            'autoIncrement' => true,
+                            'size' => 11,
+                            'first' => true
+                        ]
+                    ),
+                    new Column(
+                        'NAME',
+                        [
+                            'type' => Column::TYPE_VARCHAR,
+                            'notNull' => true,
+                            'size' => 255,
+                            'after' => 'id'
+                        ]
+                    )
+                ],
+                'indexes' => [
+                    new Index('PRIMARY', ['id'], 'PRIMARY')
+                ],
+                'options' => [
+                    'TABLE_TYPE' => 'BASE TABLE',
+                    'AUTO_INCREMENT' => '1',
+                    'ENGINE' => 'InnoDB',
+                    'TABLE_COLLATION' => 'utf8mb4_general_ci'
+                ],
+            ]
+        );
     }
 
     /**
@@ -58,8 +57,9 @@ class KeywordsMigration_100 extends Migration
      *
      * @return void
      */
-    public function up(): void
+    public function up()
     {
+
     }
 
     /**
@@ -67,7 +67,9 @@ class KeywordsMigration_100 extends Migration
      *
      * @return void
      */
-    public function down(): void
+    public function down()
     {
+
     }
+
 }

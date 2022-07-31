@@ -1,0 +1,65 @@
+<?php
+
+class Ratings extends \Phalcon\Mvc\Model
+{
+
+    /**
+     *
+     * @var integer
+     */
+    public $id;
+
+    /**
+     *
+     * @var string
+     */
+    public $nAME;
+
+    /**
+     * Initialize method for model.
+     */
+    public function initialize()
+    {
+        $this->setSchema("moviesdb");
+        $this->setSource("ratings");
+        $this->hasMany('id', 'Movies', 'rating_id', ['alias' => 'Movies']);
+    }
+
+    /**
+     * Allows to query a set of records that match the specified conditions
+     *
+     * @param mixed $parameters
+     * @return Ratings[]|Ratings|\Phalcon\Mvc\Model\ResultSetInterface
+     */
+    public static function find($parameters = null): \Phalcon\Mvc\Model\ResultsetInterface
+    {
+        return parent::find($parameters);
+    }
+
+    /**
+     * Allows to query the first record that match the specified conditions
+     *
+     * @param mixed $parameters
+     * @return Ratings|\Phalcon\Mvc\Model\ResultInterface|\Phalcon\Mvc\ModelInterface|null
+     */
+    public static function findFirst($parameters = null): ?\Phalcon\Mvc\ModelInterface
+    {
+        return parent::findFirst($parameters);
+    }
+
+    public function validation()
+    {
+        $validator = new Validation();
+
+        $validator->add(
+            'NAME',
+            new Uniqueness(
+                [
+                    "message" => 'The name must be unique'
+                ]
+            )
+        );
+
+        return $this->validate($validator);
+    }
+}
